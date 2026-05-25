@@ -184,7 +184,7 @@ O Flyway é responsável pelo versionamento e criação automática das tabelas 
 
 - [Iara Venâncio](https://github.com/Iaravenancio)
 - [Jessica Ghirardelli Tinguely](https://github.com/jessicatinguely)
-- [Caio Riva](https://github.com/caioriva)
+- [Caio Riva](https://github.com/caaioriva)
 
 ---
 
