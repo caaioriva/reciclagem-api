@@ -1,0 +1,37 @@
+services:
+
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: oracle-reciclagem
+
+    environment:
+      ORACLE_PASSWORD: oracle
+      APP_USER: reciclagem
+      APP_USER_PASSWORD: reciclagem
+
+    ports:
+      - "1521:1521"
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+
+    container_name: reciclagem-api
+
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-db:1521/FREEPDB1
+      SPRING_DATASOURCE_USERNAME: reciclagem
+      SPRING_DATASOURCE_PASSWORD: reciclagem
+
+    ports:
+      - "8080:8080"
+    
